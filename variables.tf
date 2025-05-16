@@ -178,3 +178,40 @@ variable "backup" {
   type        = string
   default     = "true"
 }
+
+# 实例付费类型配置
+variable "instance_charge_type" {
+  description = "实例付费类型，可选值：PrePaid（包年包月）、PostPaid（按量付费）"
+  type        = string
+  default     = "PostPaid"
+  validation {
+    condition     = contains(["PrePaid", "PostPaid"], var.instance_charge_type)
+    error_message = "付费类型必须是 PrePaid 或 PostPaid"
+  }
+}
+
+variable "period" {
+  description = "包年包月实例的购买时长，单位：月。当 instance_charge_type 为 PrePaid 时必填"
+  type        = number
+  default     = 1
+  validation {
+    condition     = var.instance_charge_type == "PostPaid" || (var.instance_charge_type == "PrePaid" && var.period >= 1 && var.period <= 36)
+    error_message = "包年包月实例的购买时长必须在1-36个月之间"
+  }
+}
+
+variable "auto_renew" {
+  description = "是否自动续费，当 instance_charge_type 为 PrePaid 时有效"
+  type        = bool
+  default     = false
+}
+
+variable "auto_renew_period" {
+  description = "自动续费时长，单位：月。当 auto_renew 为 true 时有效"
+  type        = number
+  default     = 1
+  validation {
+    condition     = !var.auto_renew || (var.auto_renew && var.auto_renew_period >= 1 && var.auto_renew_period <= 12)
+    error_message = "自动续费时长必须在1-12个月之间"
+  }
+}

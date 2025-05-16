@@ -82,4 +82,15 @@ instance_count = 1
 # export ALICLOUD_ACCESS_KEY="your-access-key"
 # export ALICLOUD_SECRET_KEY="your-secret-key"
 cloud_access_key = "your-access-key"
-cloud_secret_key = "your-secret-key" 
+cloud_secret_key = "your-secret-key"
+
+# 实例付费类型配置
+# instance_charge_type: 付费类型，可选值：PrePaid（包年包月）、PostPaid（按量付费）
+# period: 包年包月实例的购买时长，单位：月
+# auto_renew: 是否自动续费
+# auto_renew_period: 自动续费时长，单位：月
+instance_charge_type = "PostPaid"  # 按量付费
+# instance_charge_type = "PrePaid"  # 包年包月
+# period = 1  # 购买12个月
+# auto_renew = true  # 启用自动续费
+# auto_renew_period = 1  # 自动续费1个月 

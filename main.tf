@@ -280,6 +280,12 @@ resource "alicloud_instance" "web" {
   security_groups      = [local.security_group_id]
   vswitch_id           = local.vswitch_ids[count.index % length(local.vswitch_ids)]
   
+  # 付费类型配置
+  instance_charge_type = var.instance_charge_type
+  period              = var.instance_charge_type == "PrePaid" ? var.period : null
+  auto_renew          = var.instance_charge_type == "PrePaid" ? var.auto_renew : null
+  auto_renew_period   = var.instance_charge_type == "PrePaid" && var.auto_renew ? var.auto_renew_period : null
+  
   # 根据登录模式选择使用密钥对或密码
   key_name = var.login_mode == "key" ? (
     # 首先检查是否有指定的现有密钥对
