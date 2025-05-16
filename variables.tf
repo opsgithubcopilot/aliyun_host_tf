@@ -195,7 +195,7 @@ variable "period" {
   type        = number
   default     = 1
   validation {
-    condition     = var.instance_charge_type == "PostPaid" || (var.instance_charge_type == "PrePaid" && var.period >= 1 && var.period <= 36)
+    condition     = var.period >= 1 && var.period <= 36
     error_message = "包年包月实例的购买时长必须在1-36个月之间"
   }
 }
@@ -211,7 +211,7 @@ variable "auto_renew_period" {
   type        = number
   default     = 1
   validation {
-    condition     = !var.auto_renew || (var.auto_renew && var.auto_renew_period >= 1 && var.auto_renew_period <= 12)
+    condition     = var.auto_renew_period >= 1 && var.auto_renew_period <= 12
     error_message = "自动续费时长必须在1-12个月之间"
   }
 }
