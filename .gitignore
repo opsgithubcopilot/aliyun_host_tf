@@ -1,0 +1,32 @@
+# 本地 Terraform 文件
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# 包含敏感信息的文件
+terraform.tfvars
+*credentials*
+*secret*
+*key*
+
+# SSH 密钥文件
+ssh_keys/
+*.pem
+*.key
+*.pub
+
+# 备份文件
+security_group_backup_*.json
+
+# 其他
+.DS_Store
+.idea/
+.vscode/
+*.log 

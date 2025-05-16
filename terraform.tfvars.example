@@ -1,0 +1,85 @@
+# 云服务区域配置
+# cloud_region: 云服务区域，例如 cn-hangzhou（杭州）
+# availability_zones: 可用区列表，例如 ["a", "b", "c"] 表示 cn-hangzhou-a, cn-hangzhou-b, cn-hangzhou-c
+cloud_region = "cn-hangzhou"
+availability_zones = ["a", "b"]
+
+# 项目基本信息配置
+# project_name: 项目名称，用于资源命名和标签
+# environment: 环境类型，如 dev（开发）、prod（生产）等
+# owner: 资源所有者
+# department: 部门名称
+# costcenter: 成本中心编号
+# application: 应用名称
+# backup: 是否需要备份，true/false
+project_name = "my-ecs-project"
+environment = "dev"
+owner = "devops-team"
+department = "engineering"
+costcenter = "cc-12345"
+application = "web-app"
+backup = "true"
+
+# 资源标签配置
+# 这些标签将应用到所有阿里云资源上，用于资源管理和成本分配
+tags = {
+  "BusinessUnit" = "Digital"           # 业务单元
+  "DataClassification" = "Internal"    # 数据分类
+  "ProjectCode" = "PRJ-123"           # 项目代码
+  "MaintenanceWindow" = "Sunday 01:00-03:00"  # 维护时间窗口
+}
+
+# 网络配置
+# vpc_id: 现有VPC的ID，留空则创建新VPC
+# vpc_cidr: VPC的CIDR块，定义VPC的IP地址范围
+vpc_id = ""  # 留空则创建新VPC
+vpc_cidr = "10.0.0.0/16"
+
+# 网络交换机配置
+# vswitch_id: 现有交换机的ID，留空则创建新交换机
+vswitch_id = ""  # 留空则创建新交换机
+
+# 安全组配置
+# security_group_id: 现有安全组的ID，留空则创建新安全组
+security_group_id = ""  # 留空则创建新安全组
+
+# 实例配置
+# image_id: 镜像ID，指定实例使用的操作系统镜像
+# instance_type: 实例类型，定义实例的计算和内存资源
+# root_volume_size: 根卷大小（GB）
+# root_volume_type: 根卷类型，可选值：cloud_efficiency, cloud_ssd, cloud_essd
+image_id = "centos_7_9_x64_20G_alibase_20240628.vhd"  # CentOS 7.9 64位
+instance_type = "ecs.c5.xlarge"  # 2核8GB
+root_volume_size = 50
+root_volume_type = "cloud_efficiency"
+
+# 数据盘配置
+# data_volume_size: 数据盘大小（GB）
+# data_volume_type: 数据盘类型，可选值：cloud_efficiency, cloud_ssd, cloud_essd
+# data_volume_mount_point: 数据盘挂载点
+data_volume_size = 100
+data_volume_type = "cloud_efficiency"
+data_volume_mount_point = "/data"
+
+# 登录配置
+# login_mode: 登录模式，可选值：'key'（使用SSH密钥）或'password'（使用密码）
+# public_key_files: SSH公钥文件路径列表
+# password: 当login_mode为'password'时，用于ECS实例的登录密码
+login_mode = "key"
+public_key_files = ["ssh_keys/key1.pub", "ssh_keys/key2.pub"]
+# password = "YourStrongPassword123!"  # 密码必须包含大小写字母、数字和特殊字符
+
+# 网络配置
+# create_eip: 是否创建弹性公网IP并关联到实例
+create_eip = true
+
+# 实例配置
+# instance_count: 要创建的ECS实例数量
+instance_count = 1
+
+# 云服务访问凭证
+# 注意：建议通过环境变量或其他安全方式提供这些值，而不是直接在此文件中设置
+# export ALICLOUD_ACCESS_KEY="your-access-key"
+# export ALICLOUD_SECRET_KEY="your-secret-key"
+cloud_access_key = "your-access-key"
+cloud_secret_key = "your-secret-key" 
